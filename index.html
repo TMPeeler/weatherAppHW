@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="bg-dark text-light card-header">
+        <h1 class="text-center">Weather Forecast</h1>
+    </header> <!-- top header of the page with the title-->
+    
+
+        <div class="row fullSize"> <!-- one big row for all of my content to be in-->
+    <aside class="ml-3 col-3"> <!-- side part for the search and search history-->
+        <h1 >Search via City:</h1>
+
+        <div class="input-group"> <!-- trying to make the button on the side match the text box-->
+        <form class="form-inline"> <!-- search bar-->
+            <input type="text" placeholder="Insert City Here">
+            <button class="btn-lg"></button> <!-- search button-->
+        </form>
+        </div>
+    </aside>
+
+       
+
+
+    <main class="col-9">
+        <section id="currentWeather"> <!-- temperature, humidity, wind speed, UV index-->
+
+        </section>
+
+
+
+        <section id="5day"> <!-- cards for 5 day forecast-->
+
+
+        </section>
+
+    </main>
+
+
+</div>
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
