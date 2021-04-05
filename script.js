@@ -19,4 +19,24 @@
 // set search history items to be parsed and appended to the page from local storage
 
 
+var currentWeather = $("#currentWeather"); 
+
+
+var fiveDay = $("#fiveDay");
+
+
+var searchHistory = $("#searchHistory");
+
+
+
+var todaysWeather = function () {
+    var todaysAPIkey = "api.openweathermap.org/data/2.5/weather?q={city name}&appid=dd76701e25ab4039c10dae0c18be5401" ;
+}
+
+var fiveForecast = function ()  { 
+    var fiveForecastAPIkey = "api.openweathermap.org/data/2.5/forecast?q={city name}&appid=dd76701e25ab4039c10dae0c18be5401";
+    
+}
+
+
 
