@@ -30,26 +30,23 @@ var formBehave = $("#formBehave");
 // var city = formText.val;
 
 var todaysWeather = function (city) {
-    var city = $("#formText").val();
+    // var city = $("#formText").val();
     var todaysAPIkey = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=dd76701e25ab4039c10dae0c18be5401&units=imperial`;
     fetch(todaysAPIkey)
     .then(function(response) {
         return response.json();
-
-        
     })
     .then(function (data) {
-        
-        // renderTodaysWeather(data);
+        renderTodaysWeather(data);
         console.log(data);
     });
     
 }
 
 
-var fiveForecast = function ()  { 
-    
-    var fiveForecastAPIkey = `https://api.openweathermap.org/data/2.5/forecast?q=${city.name}&appid=dd76701e25ab4039c10dae0c18be5401&units=imperial`;
+var fiveForecast = function (city)  { 
+
+    var fiveForecastAPIkey = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=dd76701e25ab4039c10dae0c18be5401&units=imperial`;
     fetch(fiveForecastAPIkey)
     .then(function(response) {
         return response.json();
@@ -58,21 +55,47 @@ var fiveForecast = function ()  {
     });
 }
 
-var renderTodaysWeather = function() {
+var renderTodaysWeather = function(city) {
     var date = moment().format("dddd, MMMM, Do YYYY, h:mm:ss a");
-    
+    currentWeather.empty();
+    var weatherPic = `https://openweathermap.org/img/wn/${city.weather[0].icon}@2x.png`
+    var weatherOfTheDay = $(`
+    <div class = "row ml-2"> 
+    <h1>${city.name} ${date}<img src="${weatherPic}"></h1>
+    <p>Temperature: ${city.main.temp} F</p>
+    <p>Humidity:  ${city.main.humidity} % </p>
+    <p>Wind Speed: ${city.wind.speed} MPH </p>
+    </div>
+    `);
+   currentWeather.append(weatherOfTheDay);
+
     
 }
 
-var renderFiveForecast = function() {
+var renderFiveForecast = function(city) {
+    var date = moment().format("ddd");
+    fiveDay.empty();
+    var forecastPicture = `https://openweathermap.org/img/wn/${city.daily[i].weather[0].icon}@2x.png`
 
 
+    var forecastWeekly = $(`
+    <div class="card col-2">
+    <h3 class="card-title"> ${date} <h3>
+    <img src="${forecastPicture}">
+    <p class ="card-text> Tmp: ${}
+
+
+    </div>
+    
+    
+    `)
 }
 
 formBehave.on("submit", (event) => {
     event.preventDefault();
-    todaysWeather(city);
     var city = $("#formText").val();
+    todaysWeather(city);
+    fiveForecast(city);
 });
 
 
