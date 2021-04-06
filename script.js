@@ -23,14 +23,19 @@ var currentWeather = $("#currentWeather");
 var fiveDay = $("#fiveDay");
 var searchHistory = $("#searchHistory");
 var formBehave = $("#formBehave");
-var formText = $("#formText");
-var city = formText.val;
+// var city;
+// var formText = $("#formText");
+// var city = 
+
+// var city = formText.val;
 
 var todaysWeather = function (city) {
-    var todaysAPIkey = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=dd76701e25ab4039c10dae0c18be5401&units=imperial";
+    var city = $("#formText").val();
+    var todaysAPIkey = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=dd76701e25ab4039c10dae0c18be5401&units=imperial`;
     fetch(todaysAPIkey)
     .then(function(response) {
         return response.json();
+
         
     })
     .then(function (data) {
@@ -43,7 +48,8 @@ var todaysWeather = function (city) {
 
 
 var fiveForecast = function ()  { 
-    var fiveForecastAPIkey = "https://api.openweathermap.org/data/2.5/forecast?q={city name}&appid=dd76701e25ab4039c10dae0c18be5401&units=imperial";
+    
+    var fiveForecastAPIkey = `https://api.openweathermap.org/data/2.5/forecast?q=${city.name}&appid=dd76701e25ab4039c10dae0c18be5401&units=imperial`;
     fetch(fiveForecastAPIkey)
     .then(function(response) {
         return response.json();
@@ -55,6 +61,7 @@ var fiveForecast = function ()  {
 var renderTodaysWeather = function() {
     var date = moment().format("dddd, MMMM, Do YYYY, h:mm:ss a");
     
+    
 }
 
 var renderFiveForecast = function() {
@@ -65,7 +72,7 @@ var renderFiveForecast = function() {
 formBehave.on("submit", (event) => {
     event.preventDefault();
     todaysWeather(city);
-    
+    var city = $("#formText").val();
 });
 
 
