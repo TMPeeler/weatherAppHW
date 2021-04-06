@@ -55,12 +55,14 @@ var fiveForecast = function (city)  {
         // console.log(data);
     });
 }
+// both my fetch requests trigger their own render functions to generate and append items to the page
+
 
 var renderTodaysWeather = function(city) {
-    var date = moment().format("dddd, MMMM, Do YYYY, h:mm:ss a");
-    currentWeather.empty();
-    var weatherPic = `https://openweathermap.org/img/wn/${city.weather[0].icon}@2x.png`
-    var weatherOfTheDay = $(`
+    var date = moment().format("dddd, MMMM, Do YYYY, h:mm:ss a"); // using moment to find the current time and date for the main card of my current weather 
+    currentWeather.empty(); // jake and alex pointed out that if this line is not included then every time the function is ran, it will stack the appended elements on top of each other each time they're generated and appended
+    var weatherPic = `https://openweathermap.org/img/wn/${city.weather[0].icon}@2x.png` // linking this allows me to use the API call for the weather icon as a variable when appending the icon as a picture
+    var weatherOfTheDay = $(` 
     <div class = "row ml-2"> 
     <h1>${city.name} ${date}<img src="${weatherPic}"></h1>
     <p>Temperature: ${city.main.temp} F</p>
@@ -68,7 +70,8 @@ var renderTodaysWeather = function(city) {
     <p>Wind Speed: ${city.wind.speed} MPH </p>
     </div>
     `);
-   currentWeather.append(weatherOfTheDay);
+    //using template literals again to create one giant object of HTML that will be appended (THIS IS PROBABLY THE BIGGEST LEARNING OF THIS WHOLE ASSIGNMENT THIS IS SO AWESOME)
+   currentWeather.append(weatherOfTheDay); // append today's weather to the current weather ID dom selector
 
     
 }
@@ -94,12 +97,13 @@ var renderFiveForecast = function(city) {
     
     
     `);
+    // template literal for object keys and info to be appended into cards in a row
     console.log("test");
     forecastCont.append(forecastWeekly);
 }
 
 }
-
+//saying that when you click on the search button it will fetch for data that then generates itself. had to prevent default behavior, and also had to add a global variable for the rest of my functions to call on that says that the text in my box, is also the city I'm trying to target
 formBehave.on("submit", (event) => {
     event.preventDefault();
     var city = $("#formText").val();
